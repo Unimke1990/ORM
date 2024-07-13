@@ -81,14 +81,17 @@ post_query = session.query(Posts).filter_by(postContent="hello, this is my first
 for all_post in post_query:
     print(all_post.user.userID)
 
+# checking for a usesr with a certain username or firstname
 checks = session.query(User).filter(or_(User.userName=="Angel", User.firstName=="Agba")).all()
 for check in checks:
     print(f"{check.userName}, {check.firstName}, {check.userID}")
 
+# checking for a user with a certain username and lastname
 checks = session.query(User).filter(and_(User.userName=="Angel", User.lastName=="Simmy")).all()
 for check in checks:
     print(f"{check.userName}, {check.firstName}, {check.userID}")
 
+# checking for all posts made by a particular user
 checkAllPost = session.query(User).filter_by(userName="Beatrice_J").first()
 if checkAllPost:
     print(f"{checkAllPost.firstName}, {checkAllPost.userID}")
@@ -96,4 +99,4 @@ if checkAllPost:
     for post in checkAllPost.posts:
         print(f"{post.postContent}")
 else:
-    print("user not found")
+    print("User not found!")
