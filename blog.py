@@ -88,3 +88,12 @@ for check in checks:
 checks = session.query(User).filter(and_(User.userName=="Angel", User.lastName=="Simmy")).all()
 for check in checks:
     print(f"{check.userName}, {check.firstName}, {check.userID}")
+
+checkAllPost = session.query(User).filter_by(userName="Beatrice_J").first()
+if checkAllPost:
+    print(f"{checkAllPost.firstName}, {checkAllPost.userID}")
+
+    for post in checkAllPost.posts:
+        print(f"{post.postContent}")
+else:
+    print("user not found")
