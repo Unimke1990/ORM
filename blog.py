@@ -52,6 +52,22 @@ class Posts(Base):
         session.commit()
         return newPost
 
+class Likes(Base):
+    __tablename__ = "likes"
+    likeID = Column("likeID", String, primary_key=True, default=generate_uuid)
+    userID = Column("userID", String, ForeignKey("users.userID"))
+    postID = Column("postID", String, ForeignKey("posts.postID"))
+    user = relationship("User", back_populates="likes")
+    post = relationship("Post", back_populates="likes")
+
+    def __init__(self, userID, postID):
+        self.userID = userID
+        self.postID = postID
+
+    def addLike(userID, postID):
+        like = Likes(userID, postID)
+        session.add(like)
+        session.commit()
 
 engine = create_engine("sqlite:///blogDB.db")
 Base.metadata.create_all(bind=engine)
@@ -67,10 +83,10 @@ user4 = User.createUser(session=session, userName="Angel", firstName="Agba", las
 user5 = User.createUser(session=session, userName="PuoloG", firstName="Clop", lastName="Danny")
 
 # adding posts
-user1 = Posts.addPost(session=session, userID=user1.userID, postContent="hello, this is my third post")
-user1 = Posts.addPost(session=session, userID=user1.userID, postContent="hello, this is my fourth post")
-user2 = Posts.addPost(session=session, userID=user2.userID, postContent="hello, this is my third post")
-user2 = Posts.addPost(session=session, userID=user2.userID, postContent="hello, this is my fourth post")
+# user1 = Posts.addPost(session=session, userID=user1.userID, postContent="hello, this is my third post")
+# user1 = Posts.addPost(session=session, userID=user1.userID, postContent="hello, this is my fourth post")
+# user2 = Posts.addPost(session=session, userID=user2.userID, postContent="hello, this is my third post")
+# user2 = Posts.addPost(session=session, userID=user2.userID, postContent="hello, this is my fourth post")
 
 # querying the data
 user_query = session.query(User).filter_by(firstName="Paul").first()
