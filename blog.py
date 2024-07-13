@@ -62,6 +62,7 @@ session = Session()
 # adding users
 # user1 = User.createUser(session=session, userName="Beatrice_J", firstName="Beatrice", lastName="John")
 # user2 = User.createUser(session=session, userName="PuoloG", firstName="Paul", lastName="Jimmy")
+user3 = User.createUser(session=session, userName="Angel", firstName="Simmy", lastName="Dal")
 
 # adding posts
 # user1 = Posts.addPost(session=session, userID=user1.userID, postContent="hello, this is my third post")
