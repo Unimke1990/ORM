@@ -1,5 +1,5 @@
 from flask import Flask
-from tryFlask import sqlalchemy
+from flask_sqlalchemy import SQLAlchemy
 
 # setting up the configurations
 app = Flask(__name__)
@@ -7,6 +7,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # instantiate a database
-db = sqlalchemy(app)
+db = SQLAlchemy(app)
 
-db.create_all()
+with app.app_context():
+    db.create_all()
