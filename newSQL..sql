@@ -20,15 +20,23 @@ CREATE TABLE IF NOT EXISTS `posts` (
 
 INSERT INTO users(name, gender, email) VALUES ('agim given', 'male', 'agimu@gmail.com')
 
+
+INSERT INTO users(name, gender, email) VALUES ('dell florence', 'female', 'dellflo@gmail.com')
+
 INSERT INTO posts(title, content) VALUES ('first post', 'hello everyone')
 
-UPDATE posts SET author_id = 1 WHERE id=1;
+INSERT INTO posts(title, content) VALUES ('Hell Dell', 'Nice to be in this file')
+
+UPDATE posts SET author_id = 2 WHERE id=3;
+
+UPDATE posts SET id = 2 WHERE author_id=2;
+
+DELETE FROM posts WHERE id=2
 
 DROP TABLE users;
 
 SHOW TABLES;
 
 SELECT * FROM posts;
-
 
 SELECT * FROM users;
