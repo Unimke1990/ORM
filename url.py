@@ -2,6 +2,7 @@ import requests
 import urllib.request
 import shutil
 import tempfile
+import urllib.parse
 # how to parse a url
 
 # from urllib.parse import urlparse
@@ -30,13 +31,13 @@ import tempfile
 #     print(html)
 
 # making an explicit request which will allow for headers to be added
-req = urllib.request.Request('https://google.com/')
-with urllib.request.urlopen(req) as reply:
-    with tempfile.NamedTemporaryFile(delete=False) as file:
-        shutil.copyfileobj(reply, file)
-        file.seek(0)
-        files = file.read()
-        print(files)
+# req = urllib.request.Request('https://google.com/')
+# with urllib.request.urlopen(req) as reply:
+#     with tempfile.NamedTemporaryFile(delete=False) as file:
+#         shutil.copyfileobj(reply, file)
+#         file.seek(0)
+#         files = file.read()
+#         print(files)
 
     # response = reply.read()
     # print(response)
@@ -49,3 +50,21 @@ with urllib.request.urlopen(req) as reply:
 #         tem_file.seek(0)
 #         reply = tem_file.read()
 #         print(reply)
+
+# making requests with headers - data needs encoding
+url = 'http://www.someserver.com/cgi-bin/register.cgi'
+values = {
+    'name': 'Given',
+    'age': 34,
+    'gender': 'make'
+}
+
+data = urllib.parse.urlencode(values)
+data = data.encode('ascii')
+req = urllib.request.Request(url, data, method='POST')
+with urllib.request.urlopen(req) as response:
+    if response.status == 200:
+        file = response.read()
+    else:
+        print(f"Error: {response.status}")
+
