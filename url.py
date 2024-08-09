@@ -29,10 +29,17 @@ import tempfile
 #     html = reply.read()
 #     print(html)
 
+# making an explicit request which will allow for headers to be added
+req = urllib.request.Request('https://google.com/')
+with urllib.request.urlopen(req) as reply:
+    response = reply.read()
+    print(response)
+
+
 # How to download a resource from URL and storing in a temp file
-with urllib.request.urlopen('https://google.com/') as response:
-    with tempfile.NamedTemporaryFile(delete=False) as tem_file:
-        shutil.copyfileobj(response, tem_file)
-        tem_file.seek(0)
-        reply = tem_file.read()
-        print(reply)
+# with urllib.request.urlopen('https://google.com/') as response:
+#     with tempfile.NamedTemporaryFile(delete=False) as tem_file:
+#         shutil.copyfileobj(response, tem_file)
+#         tem_file.seek(0)
+#         reply = tem_file.read()
+#         print(reply)
