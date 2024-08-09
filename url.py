@@ -51,20 +51,33 @@ import urllib.parse
 #         reply = tem_file.read()
 #         print(reply)
 
-# making requests with headers - data needs encoding
-url = 'http://www.someserver.com/cgi-bin/register.cgi'
+# making posts with data - data needs encoding
+# url = 'http://www.someserver.com/cgi-bin/register.cgi'
+# values = {
+#     'name': 'Given',
+#     'age': 34,
+#     'gender': 'make'
+# }
+
+# data = urllib.parse.urlencode(values)
+# data = data.encode('ascii')
+# req = urllib.request.Request(url, data, method='POST')
+# with urllib.request.urlopen(req) as response:
+#     if response.status == 200:
+#         file = response.read()
+#     else:
+#         print(f"Error: {response.status}")
+
+# making get requests with additional data
+
 values = {
     'name': 'Given',
     'age': 34,
     'gender': 'make'
 }
-
 data = urllib.parse.urlencode(values)
-data = data.encode('ascii')
-req = urllib.request.Request(url, data, method='POST')
-with urllib.request.urlopen(req) as response:
-    if response.status == 200:
-        file = response.read()
-    else:
-        print(f"Error: {response.status}")
-
+print(data)
+url = 'https://google.com'
+data_url = url + '?' + data
+response = urllib.request.urlopen(data_url)
+print(response.read())
