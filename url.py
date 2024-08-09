@@ -32,8 +32,14 @@ import tempfile
 # making an explicit request which will allow for headers to be added
 req = urllib.request.Request('https://google.com/')
 with urllib.request.urlopen(req) as reply:
-    response = reply.read()
-    print(response)
+    with tempfile.NamedTemporaryFile(delete=False) as file:
+        shutil.copyfileobj(reply, file)
+        file.seek(0)
+        files = file.read()
+        print(files)
+
+    # response = reply.read()
+    # print(response)
 
 
 # How to download a resource from URL and storing in a temp file
