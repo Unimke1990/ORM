@@ -1,5 +1,7 @@
 import requests
 import urllib.request
+import shutil
+import tempfile
 # how to parse a url
 
 # from urllib.parse import urlparse
@@ -22,6 +24,15 @@ import urllib.request
 # response = requests.get(my_url)
 # print(response.content)
 
-with urllib.request.urlopen('http://google.com') as reply:
-    html = reply.read()
-    print(html)
+# more request examples
+# with urllib.request.urlopen('http://google.com') as reply:
+#     html = reply.read()
+#     print(html)
+
+# How to download a resource from URL and storing in a temp file
+with urllib.request.urlopen('https://google.com/') as response:
+    with tempfile.NamedTemporaryFile(delete=False) as tem_file:
+        shutil.copyfileobj(response, tem_file)
+        tem_file.seek(0)
+        reply = tem_file.read()
+        print(reply)
