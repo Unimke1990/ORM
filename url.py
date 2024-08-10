@@ -147,10 +147,19 @@ import io
 #     print(data.content)
 
 # POST REQUEST
-url = 'http://google.com'
-values = {'name': 'given', 'gender': 'male', 'age': 34}
-req = requests.post(url, json=values)
+# url = 'http://google.com'
+# values = {'name': 'given', 'gender': 'male', 'age': 34}
+# req = requests.post(url, json=values)
+# if (req.status_code == 200):
+#     print(req.content)
+# else:
+#     print(req.status_code)
+
+# HOW TO FETCH JSON DATA
+url = 'https://google.com/data.json'
+req = requests.get(url)
 if (req.status_code == 200):
-    print(req.content)
+    response = req.json()
+    print(response)
 else:
     print(req.status_code)
