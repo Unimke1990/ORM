@@ -146,3 +146,11 @@ import io
 #     print(data.status_code)
 #     print(data.content)
 
+# POST REQUEST
+url = 'http://google.com'
+values = {'name': 'given', 'gender': 'male', 'age': 34}
+req = requests.post(url, json=values)
+if (req.status_code == 200):
+    print(req.content)
+else:
+    print(req.status_code)
