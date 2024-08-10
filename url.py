@@ -4,6 +4,9 @@ import urllib.request
 import shutil
 import tempfile
 import urllib.parse
+import gzip
+import io
+
 # how to parse a url
 
 # from urllib.parse import urlparse
@@ -121,3 +124,15 @@ except urllib.error.HTTPError as e:
     print(e.info())
     print(" ")
     print(e.geturl())
+
+# HANDLING COMPRESSED CONTENT
+url = 'http://example.com'
+with urllib.request.urlopen(url) as response:
+    if response.info().get('Content-Encoding') == 'gzip':
+        with gzip.GzipFile(fileobj=io.BytesIO(response.read())) as uncompressed:
+            decoded_body = uncompressed.read().decode('utf-8')
+    else:
+        decoded_body = response.read().decode('utf-8')
+
+    print(decoded_body)
+
