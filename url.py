@@ -99,10 +99,25 @@ import urllib.parse
 #    the_page = response.read()
 
 # Handling URLError
-url = 'http://tryme_pretend.o'
+# url = 'http://tryme_pretend.o'
+# req = urllib.request.Request(url)
+# try:
+#     with urllib.request.urlopen(req) as response:
+#         print(response.read())
+# except urllib.error.URLError as e:
+#     print(e.reason)
+
+# Handling HTTPError
+url = 'http://python.org/given.html'
 req = urllib.request.Request(url)
 try:
     with urllib.request.urlopen(req) as response:
         print(response.read())
-except urllib.error.URLError as e:
-    print(e.reason)
+except urllib.error.URLError as error:
+    print(error.reason)
+except urllib.error.HTTPError as e:
+    # print(e.code)
+    # print(e.read())
+    print(e.info())
+    print(" ")
+    print(e.geturl())
