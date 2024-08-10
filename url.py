@@ -1,3 +1,4 @@
+import urllib.error
 import requests
 import urllib.request
 import shutil
@@ -70,17 +71,17 @@ import urllib.parse
 
 
 # making get requests with additional data
-values = {
-    'name': 'Given',
-    'age': 34,
-    'gender': 'make'
-}
-data = urllib.parse.urlencode(values)
-print(data)
-url = 'https://google.com'
-data_url = url + '?' + data
-print(data_url)
-response = urllib.request.urlopen(data_url)
+# values = {
+#     'name': 'Given',
+#     'age': 34,
+#     'gender': 'make'
+# }
+# data = urllib.parse.urlencode(values)
+# print(data)
+# url = 'https://google.com'
+# data_url = url + '?' + data
+# print(data_url)
+# response = urllib.request.urlopen(data_url)
 # print(response.read())
 
 # How to add a user-agent to a POST request
@@ -96,3 +97,12 @@ response = urllib.request.urlopen(data_url)
 # req = urllib.request.Request(url, data, headers)
 # with urllib.request.urlopen(req) as response:
 #    the_page = response.read()
+
+# Handling URLError
+url = 'http://tryme_pretend.o'
+req = urllib.request.Request(url)
+try:
+    with urllib.request.urlopen(req) as response:
+        print(response.read())
+except urllib.error.URLError as e:
+    print(e.reason)
