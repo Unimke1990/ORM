@@ -68,8 +68,8 @@ import urllib.parse
 #     else:
 #         print(f"Error: {response.status}")
 
-# making get requests with additional data
 
+# making get requests with additional data
 values = {
     'name': 'Given',
     'age': 34,
@@ -79,5 +79,20 @@ data = urllib.parse.urlencode(values)
 print(data)
 url = 'https://google.com'
 data_url = url + '?' + data
+print(data_url)
 response = urllib.request.urlopen(data_url)
-print(response.read())
+# print(response.read())
+
+# How to add a user-agent to a POST request
+# url = 'http://www.someserver.com/cgi-bin/register.cgi'
+# user_agent = 'Mozilla/5.0 (Windows NT 6.1; Win64; x64)'
+# values = {'name': 'Michael Foord',
+#           'location': 'Northampton',
+#           'language': 'Python' }
+# headers = {'User-Agent': user_agent}
+
+# data = urllib.parse.urlencode(values)
+# data = data.encode('ascii')
+# req = urllib.request.Request(url, data, headers)
+# with urllib.request.urlopen(req) as response:
+#    the_page = response.read()
