@@ -155,8 +155,8 @@ import io
 # else:
 #     print(req.status_code)
 
-# HOW TO FETCH JSON DATA
-url = 'https://google.com/data.json'
+# HOW TO FETCH JSON DATA USING REQUEST
+url = 'https://jsonplaceholder.typicode.com/posts/1'
 req = requests.get(url)
 if (req.status_code == 200):
     response = req.json()
