@@ -111,28 +111,38 @@ import io
 #     print(e.reason)
 
 # Handling HTTPError
-url = 'http://python.org/given.html'
-req = urllib.request.Request(url)
-try:
-    with urllib.request.urlopen(req) as response:
-        print(response.read())
-except urllib.error.URLError as error:
-    print(error.reason)
-except urllib.error.HTTPError as e:
-    # print(e.code)
-    # print(e.read())
-    print(e.info())
-    print(" ")
-    print(e.geturl())
+# url = 'http://python.org/given.html'
+# req = urllib.request.Request(url)
+# try:
+#     with urllib.request.urlopen(req) as response:
+#         print(response.read())
+# except urllib.error.URLError as error:
+#     print(error.reason)
+# except urllib.error.HTTPError as e:
+#     # print(e.code)
+#     # print(e.read())
+#     print(e.info())
+#     print(" ")
+#     print(e.geturl())
 
 # HANDLING COMPRESSED CONTENT
-url = 'http://example.com'
-with urllib.request.urlopen(url) as response:
-    if response.info().get('Content-Encoding') == 'gzip':
-        with gzip.GzipFile(fileobj=io.BytesIO(response.read())) as uncompressed:
-            decoded_body = uncompressed.read().decode('utf-8')
-    else:
-        decoded_body = response.read().decode('utf-8')
+# url = 'http://example.com'
+# with urllib.request.urlopen(url) as response:
+#     if response.info().get('Content-Encoding') == 'gzip':
+#         with gzip.GzipFile(fileobj=io.BytesIO(response.read())) as uncompressed:
+#             decoded_body = uncompressed.read().decode('utf-8')
+#     else:
+#         decoded_body = response.read().decode('utf-8')
+#     print(decoded_body)
 
-    print(decoded_body)
+# USING THE REQUEST
+# GET
+# url = 'https://dog.ceo/api/breeds/list/all'
+# data = requests.get(url)
+# if (data.status_code != 200):{
+#     print('status not sucessful')
+# }
+# else:
+#     print(data.status_code)
+#     print(data.content)
 
